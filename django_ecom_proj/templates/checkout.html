@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Checkout Page</title>
+
+  <style>
+    /* Resetting default styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+.alert-text {
+    margin-right: 30px; /* Adjusts space between text and link */
+  }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f4f5f7;
+      color: #4f4f4f;
+      line-height: 1.6;
+    }
+
+    /* Container for the whole content */
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 50px auto;
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Header and Sub-header */
+    h2 {
+      font-size: 28px;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 30px;
+      text-align: center;
+      letter-spacing: 1px;
+    }
+
+    .alert {
+      background-color: #28a745;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 8px;
+      text-align: center;
+      font-size: 16px;
+      margin-bottom: 25px;
+      font-weight: 600;
+    }
+
+    /* Breadcrumb navigation */
+    .breadcrumb {
+      background-color: transparent;
+      padding: 0;
+      margin-bottom: 20px;
+    }
+
+    .breadcrumb-item a {
+      color: #007bff;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .breadcrumb-item.active {
+      color: #333;
+    }
+
+    /* Card Style */
+    .card {
+      background-color: #fff;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      margin-bottom: 30px;
+    }
+
+    /* Form Input Fields */
+    .form-control {
+      width: 100%;
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      border: 2px solid #e0e0e0;
+      font-size: 16px;
+      background-color: #f9f9f9;
+      transition: all 0.3s ease;
+    }
+
+    .form-control:focus {
+      border-color: #007bff;
+      background-color: #fff;
+      outline: none;
+    }
+
+    /* Button Style */
+    #btn {
+      width: 100%;
+      padding: 16px;
+      background-color: #007bff;
+      color: white;
+      font-size: 18px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-top: 20px;
+    }
+
+    #btn:hover {
+      background-color: #0056b3;
+    }
+
+    /* List of Cart Items */
+    .list-group-item {
+      background-color: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      margin-bottom: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .badge {
+      background-color: #007bff;
+      padding: 8px 12px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .container {
+        width: 100%;
+        padding: 20px;
+      }
+
+      .form-row {
+        flex-direction: column;
+      }
+
+      .form-group {
+        width: 100%;
+      }
+
+      #btn {
+        width: 100%;
+      }
+    }
+  </style>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="alert">
+    <span class="alert-text">GV_ECOMMERCE</span>
+    <a href="/" class="text-white link">Back to browse Products</a>
+</div>
+  <div class="container">
+    <div class="col my-4">
+      <h2>Step 1 - Review Your Cart Items</h2>
+      <div class="my-4">
+        <ul class="list-group" id="items"></ul>
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb mt-3">
+            <li class="breadcrumb-item active" aria-current="page">
+              Your Cart Total Is <b>Rs. <span id="totalprice"></span> <span id="amount"></span></b>.
+              Enter your details below & place your order. Thanks for using GV_ECOMMERCE
+            </li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+
+    <div class="col my-4">
+      <h2>Step 2 - Enter Address & Other Details:</h2>
+      <form method="post" action="/checkout/">
+        {% csrf_token %}
+        <input type="hidden" name="itemsJson" id="itemsJson">
+        <input type="hidden" id="amt" name="amt">
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputname">Full Name</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Enter your full name" required>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputEmail4">Email Address</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" value="{{user.email}}" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputAddress">Address Line 1</label>
+            <input type="text" class="form-control" id="address1" name="address1" placeholder="Street Address" required>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputAddress">Address Line 2</label>
+            <input type="text" class="form-control" id="address2" name="address2" placeholder="Apartment, suite, etc." required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputCity">City</label>
+            <input type="text" class="form-control" id="city" name="city" required>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputState">State</label>
+            <input type="text" class="form-control" id="state" name="state" placeholder="State" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputZip">Zip Code</label>
+            <input type="number" class="form-control" id="zip_code" name="zip_code" required>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputPhone">Phone Number</label>
+            <input type="number" class="form-control" id="phone" name="phone" required>
+          </div>
+        </div>
+
+        <button id="btn" type="submit">Place Order</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+
+  <script>
+    if (localStorage.getItem('cart') == null) {
+        var cart = {};
+    } else {
+        cart = JSON.parse(localStorage.getItem('cart'));
+    }
+
+    var sum = 0;
+    var totalPrice = 0;
+    if ($.isEmptyObject(cart)) {
+        $('#items').append('<p>Your cart is empty, please add some items to your cart before checking out!</p>');
+    } else {
+        for (item in cart) {
+            let name = cart[item][1];
+            let qty = cart[item][0];
+            let itemPrice = cart[item][2];
+            sum += qty;
+            totalPrice += qty * itemPrice;
+
+            $('#items').append(`
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                ${name}
+                <div><b>Price: Rs. ${itemPrice}</b></div>
+                <span class="badge badge-pill">${qty}</span>
+              </li>
+            `);
+        }
+        document.getElementById('totalprice').innerHTML = totalPrice;
+    }
+
+    document.getElementById('totalprice').innerHTML = totalPrice;
+    $('#itemsJson').val(JSON.stringify(cart));
+
+    {% if thank %}
+    alert('Thanks for ordering with us. Your order is #{{id}}. Use it to track your order.');
+    localStorage.clear();
+    document.location = "/";
+    {% endif %}
+
+    var test = `${totalPrice}`;
+    document.getElementById("amt").value = test;
+  </script>
+
+</body>
+
+</html>

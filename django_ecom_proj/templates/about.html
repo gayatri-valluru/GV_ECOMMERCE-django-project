@@ -1,0 +1,169 @@
+{% extends 'nav.html' %}
+{% load static %}
+
+{% block title %}
+    About Us - GV_ECOMMERCE
+{% endblock title %}
+
+{% block body %}
+<main class="main">
+    <section id="about" class="about section">
+        <div class="container">
+            <div class="row">
+                <!-- About GV_ECOMMERCE -->
+                <div class="col-md-12" data-aos="fade-right">
+                    <h2 class="section-title">About GV_ECOMMERCE</h2>
+                    <p class="section-description">
+                        GV_ECOMMERCE is a cutting-edge online platform designed to provide seamless shopping experiences for users. Built with the latest technologies, this e-commerce website is tailored to meet the needs of modern customers by offering an intuitive, user-friendly interface and robust backend capabilities.
+                    </p>
+                    <p class="section-description">
+                        The platform is built using the Django framework, with a focus on secure and scalable solutions. It includes features like product browsing, cart management, checkout, and order tracking, all while ensuring a smooth and hassle-free experience for the user.
+                    </p>
+                    <p class="section-description">
+                        The goal of GV_ECOMMERCE is not just to deliver products but also to foster trust, ease, and satisfaction through efficient, optimized, and fast e-commerce solutions.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- About Gayatri Valluru -->
+                <div class="col-md-12">
+                    <h3 class="section-subtitle">About Me - Gayatri Valluru</h3>
+                    <p class="section-description">
+                        Hi! I'm Gayatri Valluru, a passionate Python Developer with a keen interest in building high-performance web applications. I hold a Master's degree in Computer Science from the University of Cincinnati and a Bachelor's degree in Computer Science from Koneru Lakshmaiah Education Foundation.
+                    </p>
+                    <p class="section-description">
+                        Over the years, I’ve gained substantial experience in software development, especially in Python, Django, and web technologies. I am committed to building scalable, efficient, and user-friendly applications. I’ve also had experience with AWS cloud services, continuous integration/deployment (CI/CD), and database management.
+                    </p>
+                    <p class="section-description">
+                        My expertise spans the following:
+                    </p>
+                    <ul class="skills-list">
+                        <li><strong>Languages:</strong> Python, JavaScript, C, C++, Java</li>
+                        <li><strong>Frameworks:</strong> Django, Flask, React JS</li>
+                        <li><strong>Databases:</strong> MySQL, PostgreSQL, MongoDB, SQLAlchemy</li>
+                        <li><strong>Cloud:</strong> AWS, Azure, GCP</li>
+                        <li><strong>Development Tools:</strong> PyCharm, Visual Studio, GitHub, Jenkins</li>
+                    </ul>
+
+                    <h3 class="section-subtitle">Professional Experience</h3>
+                    <p class="section-description">
+                        Currently, I work as a Python Developer at Kelton Tech, Inc., where I am responsible for designing and developing full-stack solutions using Flask and Django. I have also contributed to various open-source projects, building REST APIs and handling large-scale databases.
+                    </p>
+
+                    <h3 class="section-subtitle">Notable Projects</h3>
+                    <p class="section-description">
+                        One of my most notable projects is the <strong>GV_ECOMMERCE</strong> website, a complete e-commerce solution designed with Python and Django. It features product listings, user authentication, and a dynamic cart system. I built this platform with the aim of providing a seamless shopping experience for users while ensuring scalability and performance.
+                    </p>
+
+                    <h3 class="section-subtitle">Contact Me</h3>
+                    <p class="section-description">If you would like to get in touch with me, feel free to reach out via the following:</p>
+                    <ul class="contact-list">
+                        <li><strong>Email:</strong> <a href="mailto:Valluru.gayatri107@gmail.com">Valluru.gayatri107@gmail.com</a></li>
+                        <li><strong>Phone:</strong> 412-589-4543</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<style>
+    /* General styling */
+    .main {
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+
+    .about .section {
+        background-color: #f9f9f9;
+        padding: 60px 0;
+    }
+
+    .section-title {
+        font-size: 36px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .section-subtitle {
+        font-size: 28px;
+        font-weight: 600;
+        color: #007bff;
+        margin-top: 30px;
+        margin-bottom: 15px;
+    }
+
+    .section-description {
+        font-size: 18px;
+        line-height: 1.8;
+        color: #555;
+        margin-bottom: 20px;
+        text-align: justify;
+    }
+
+    .skills-list {
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+    .skills-list li {
+        font-size: 16px;
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    .contact-list {
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+    .contact-list li {
+        font-size: 16px;
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    .contact-list a {
+        color: #007bff;
+        text-decoration: none;
+    }
+
+    .contact-list a:hover {
+        text-decoration: underline;
+    }
+
+    /* Card-like boxes for contact and skills sections */
+    .skills-list li,
+    .contact-list li {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 8px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .section-title {
+            font-size: 30px;
+        }
+
+        .section-subtitle {
+            font-size: 24px;
+        }
+
+        .section-description {
+            font-size: 16px;
+        }
+
+        .contact-list li,
+        .skills-list li {
+            font-size: 14px;
+        }
+    }
+</style>
+
+{% endblock body %}

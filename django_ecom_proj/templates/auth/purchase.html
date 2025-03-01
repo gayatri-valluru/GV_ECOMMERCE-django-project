@@ -1,0 +1,16 @@
+{% extends 'nav.html' %}
+{% block title %}
+GV_ECOMMERCE
+{% endblock title %}
+{% block body %}
+{% load static %}
+
+{% for product, range, nSlides in allProds %}
+<div class="container">
+    <h3 class="my-3 text-center text-success bg-light">{{product.0.category}}Flashsale</h3>
+</div>
+<div class="container">
+    <div class="row">
+        {% for i in product %}
+    </div>
+</div>

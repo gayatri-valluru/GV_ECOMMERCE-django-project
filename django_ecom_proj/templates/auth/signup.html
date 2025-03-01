@@ -1,0 +1,69 @@
+{% extends 'nav.html' %}
+{% block title %}
+ecomproj_gaya3 signup
+{% endblock title %}
+{% block style %}
+<style>
+    .btn{font-family:"Raleway",sans-serif;
+    font-weight:500;
+    font-size:16px;
+    letter-spacing:1px;
+    display:inline-block;
+    padding: 10px 30px;
+    border-radius: 50px;
+    transition: 0.5s;
+    color: #3498db;
+    border:2px solid #3498db;
+    }
+    .btn:hover{
+    background-color:black;
+    color:white;
+    }
+</style>
+{% endblock style %}
+{% block form %}
+<br>
+ <h1 data-aos="fade-up">signup</h1>
+{% for message in messages %}
+<div class="container" data-aos="fade-up" data-aos-delay="400">
+<div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+    <strong>{{message}}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+    </div>
+{% endfor %}
+
+<form action="/ecom_auth/signup/" method="post">
+    {% csrf_token %}
+    <label for="username">Username</label>
+    <div class="form-group">
+        <input type="text" class="form-control" id="username" name="username" placeholder="enter your username" required>
+    </div>
+    <label for="fname">First name</label>
+     <div class="form-group">
+        <input type="text" class="form-control" id="fname" name="fname" placeholder="enter your first name" required>
+     </div>
+    <label for="lname">Last name</label>
+     <div class="form-group">
+        <input type="text" class="form-control" id="lname" name="lname" placeholder="enter your last name" required>
+     </div>
+    <label for="email">Email</label>
+     <div class="form-group">
+        <input type="email" class="form-control" id="email" name="email" placeholder="enter your email" required>
+     </div>
+    <label for="pass1">Password</label>
+     <div class="form-group">
+        <input type="password" class="form-control" id="pass1" name="pass1" placeholder="enter your password" required>
+     </div>
+     <label for="pass2">Confirm Password</label>
+     <div class="form-group">
+        <input type="password" class="form-control" id="pass2" name="pass2"  placeholder="re-enter your password" required>
+     </div>
+    <button type="submit" class="btn"> SignUp</button>
+    <br>
+    ALready User? <a href="/ecom_auth/login">Login</a>
+    <br>
+    Go back to HOME<a href="/" >HOME</a>
+</form>
+    </div>
+{% endblock form %}
